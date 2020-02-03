@@ -12,6 +12,32 @@ Output:
 'alpha beta gamma delta'
 */
 
-function removeDuplicateWords (s) {
-  // your perfect code...
+const removeDuplicateWords = (s) => {
+  let dic = {};
+  let word = '';
+  let str = '';
+  for(let i = 0; i < s.length; i++) {
+    if(s[i] === ' ' && dic[word] === word) {
+      word = '';
+      continue;
+    }
+    if(s[i] === ' ' && word.length !== 0 && dic[word] !== word) {
+      if(str.length === 0) {
+        str += word;
+        dic[word] = word;
+        word = '';
+        continue;
+      } else {
+        str += ( ' ' + word);
+        dic[word] = word;
+        word = '';
+        continue;
+      }
+    }
+    if(s[i] !== ' ') {
+      word += s[i];
+    }
+  }
+
+  return str;
 }
